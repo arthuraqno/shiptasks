@@ -1,3 +1,54 @@
+# 🚢 shiptasks
+
+API multi-container de gestão de tarefas — construída pra praticar Docker Compose, MongoDB, autenticação JWT e um pipeline completo de CI/CD, do commit ao servidor em produção.
+
+🌐 **Deploy:** [3.142.92.226:8000/docs](http://3.142.92.226:8000/docs) — hospedado numa instância AWS EC2 configurada manualmente.
+
+## 📋 Funcionalidades
+
+- Cadastro e autenticação de usuários com JWT e senha criptografada (bcrypt)
+- CRUD de tarefas: criar, listar, marcar como feita, deletar
+- Rotas de escrita protegidas por token; listagem pública
+- Documentação interativa automática (Swagger)
+
+## 📁 Estrutura do Projeto
+
+shiptasks/
+├── docker-compose.yml
+├── .github/
+│ └── workflows/
+│ └── deploy.yml
+└── api/
+├── Dockerfile
+├── requirements.txt
+├── main.py
+├── database.py
+├── auth.py
+├── models/
+│ ├── todo.py
+│ └── usuario.py
+├── schemas/
+│ ├── todo.py
+│ └── usuario.py
+├── services/
+│ ├── todo_service.py
+│ └── usuario_service.py
+└── routes/
+├── todo.py
+└── usuario.py
+
+
+## ▶️ Como rodar localmente
+
+1. Crie um arquivo `.env` na raiz do projeto:
+
+MONGO_PASSWORD=sua_senha_aqui
+SECRET_KEY=sua_chave_secreta_aqui
+
+2. Suba os containers (API + MongoDB):
+
+docker compose up --build
+
 3. Acesse a documentação interativa em `http://localhost:8000/docs`
 
 ## 🚀 Deploy e CI/CD
